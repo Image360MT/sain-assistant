@@ -175,7 +175,7 @@
       const data = await response.json();
       const assistantDiv = document.createElement('div');
       assistantDiv.className = 'message assistant';
-      assistantDiv.textContent = `Aimage360MT: ${data.response}`;
+      assistantDiv.innerHTML = `<strong>Aimage360MT:</strong><br>${data.response.replace(/\n/g, '<br>')}`;
       chatbox.appendChild(assistantDiv);
       chatbox.scrollTop = chatbox.scrollHeight;
     }
