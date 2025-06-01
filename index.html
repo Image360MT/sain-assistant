@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SAIN Assistant</title>
+  <title>Aimage360MT Assistant</title>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -77,22 +77,6 @@
       gap: 10px;
     }
 
-    .chat-input input[type="file"] {
-      display: none;
-    }
-
-    .chat-input label, .chat-input button.icon-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 20px;
-      color: #004785;
-    }
-
-    .chat-input label:hover, .chat-input button.icon-button:hover {
-      color: #003366;
-    }
-
     #userInput {
       flex: 1;
       padding: 10px 12px;
@@ -104,6 +88,7 @@
     .quick-prompts {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 10px;
       margin-bottom: 16px;
     }
@@ -116,29 +101,31 @@
     }
 
     .prompt-box {
-      background-color: #e6edf3;
-      color: #333;
+      background-color: #000;
+      color: #fff;
       padding: 12px 16px;
       border-radius: 10px;
       cursor: pointer;
       font-size: 14px;
       line-height: 1.4;
+      width: 50%;
+      text-align: center;
     }
 
     .prompt-box:hover {
-      background-color: #d4e1eb;
+      background-color: #333;
     }
   </style>
 </head>
 <body>
   <div class="chat-wrapper">
     <div class="chat-header">
-      SAIN (pronounced Sign) Shop Expert
+      Aimage360MT Expert
       <div>A 24/7 sign expert for Image360 Midtown Tampa customers, guiding design, orders, and support.</div>
     </div>
     <div id="chatbox">
       <div id="prompts" class="quick-prompts">
-        <div class="prompt-heading">Hi! I'm SAIN, I can answer things like:</div>
+        <div class="prompt-heading">Hi! I'm Aimage360MT, I can answer things like:</div>
         <div class="prompt-box" onclick="sendPrompt('What types of signs do you offer?')">
           “What types of signs do you offer?”
         </div>
@@ -154,10 +141,7 @@
       </div>
     </div>
     <div class="chat-input">
-      <label for="fileInput">📎</label>
-      <input type="file" id="fileInput" />
-      <button class="icon-button" onclick="startDictation()">🎤</button>
-      <input id="userInput" type="text" placeholder="Ask SAIN anything..." />
+      <input id="userInput" type="text" placeholder="Ask Aimage360MT anything..." />
       <button class="icon-button" onclick="sendMessage()">⬆️</button>
     </div>
   </div>
@@ -191,23 +175,9 @@
       const data = await response.json();
       const assistantDiv = document.createElement('div');
       assistantDiv.className = 'message assistant';
-      assistantDiv.textContent = `SAIN: ${data.response}`;
+      assistantDiv.textContent = `Aimage360MT: ${data.response}`;
       chatbox.appendChild(assistantDiv);
       chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    function startDictation() {
-      const input = document.getElementById('userInput');
-      if (!('webkitSpeechRecognition' in window)) {
-        alert('Voice recognition not supported in this browser.');
-        return;
-      }
-      const recognition = new webkitSpeechRecognition();
-      recognition.lang = 'en-US';
-      recognition.onresult = function(event) {
-        input.value = event.results[0][0].transcript;
-      };
-      recognition.start();
     }
   </script>
 </body>
