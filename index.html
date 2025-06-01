@@ -3,28 +3,72 @@
 <head>
   <title>SAIN Assistant</title>
   <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      padding: 0;
+      margin: 0;
+    }
+
     #chatbox {
       width: 100%;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 40px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
-      border: 1px solid #ccc;
+      overflow-y: auto;
+      min-height: 400px;
     }
+
     .message {
       margin: 10px 0;
+      line-height: 1.5;
     }
+
     .user {
       font-weight: bold;
+      color: #004785;
     }
+
     .assistant {
-      color: #555;
+      color: #333;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    #userInput {
+      width: calc(100% - 100px);
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #004785;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #003366;
     }
   </style>
 </head>
 <body>
   <div id="chatbox"></div>
-  <input id="userInput" type="text" placeholder="Ask SAIN..." style="width: 80%;">
-  <button onclick="sendMessage()">Send</button>
+  <div style="text-align:center;">
+    <input id="userInput" type="text" placeholder="Ask SAIN..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
 
   <script src="chat.js"></script>
 </body>
