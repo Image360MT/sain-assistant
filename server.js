@@ -1,10 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { OpenAI } = require('openai');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static frontend files
+app.use(express.static(path.join(__dirname)));
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -39,6 +43,5 @@ app.post('/chat', async (req, res) => {
   res.json({ response: lastMessage, threadId: thread });
 });
 
-// ✅ This line ensures compatibility with Render's dynamic port
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
