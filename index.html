@@ -10,10 +10,19 @@
       margin: 0;
     }
 
+    .header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .header img {
+      max-width: 160px;
+    }
+
     #chatbox {
       width: 100%;
       max-width: 600px;
-      margin: 40px auto;
+      margin: 0 auto;
       background: white;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -33,14 +42,13 @@
     }
 
     .assistant {
-      color: #333;
-      background: #f1f1f1;
+      background: #E6EDF3;
       padding: 10px;
       border-radius: 8px;
     }
 
     #userInput {
-      width: calc(100% - 100px);
+      width: calc(100% - 120px);
       padding: 10px;
       margin-top: 20px;
       border: 1px solid #ccc;
@@ -56,17 +64,29 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      margin-left: 8px;
     }
 
     button:hover {
       background: #003366;
     }
+
+    .input-area {
+      text-align: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <!-- Replace with actual logo URL if hosted -->
+    <img src="https://www.image360.com/Portals/0/Skins/Image360/images/logo.png" alt="Image360 Logo" />
+  </div>
+
   <div id="chatbox"></div>
-  <div style="text-align:center;">
-    <input id="userInput" type="text" placeholder="Ask SAIN..." />
+
+  <div class="input-area">
+    <input id="userInput" type="text" placeholder="Ask SAIN anything..." />
     <button onclick="sendMessage()">Send</button>
   </div>
 
