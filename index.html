@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aimage360MT Assistant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Victor+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Victor+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +16,6 @@
       align-items: center;
       height: 100vh;
     }
-
     .chat-wrapper {
       width: 100%;
       max-width: 700px;
@@ -29,7 +28,6 @@
       overflow: hidden;
       font-family: 'Inter', sans-serif;
     }
-
     .chat-header {
       padding: 16px;
       background-color: #ffffff;
@@ -38,14 +36,12 @@
       font-weight: 600;
       font-size: 18px;
     }
-
     .chat-header div {
       font-size: 14px;
       font-weight: normal;
       color: #555;
       margin-top: 4px;
     }
-
     #chatbox {
       flex: 1;
       padding: 16px;
@@ -53,17 +49,14 @@
       background-color: white;
       font-family: 'Victor Mono', monospace;
     }
-
     .message {
       margin-bottom: 12px;
     }
-
     .user {
       text-align: right;
       color: #004785;
       font-weight: 500;
     }
-
     .assistant {
       background-color: #f1f1f1;
       padding: 10px 14px;
@@ -71,7 +64,6 @@
       display: inline-block;
       max-width: 80%;
     }
-
     .chat-input {
       padding: 12px;
       border-top: 1px solid #e0e0e0;
@@ -79,7 +71,6 @@
       align-items: center;
       gap: 10px;
     }
-
     #userInput {
       flex: 1;
       padding: 10px 12px;
@@ -87,7 +78,6 @@
       border-radius: 8px;
       font-size: 16px;
     }
-
     .quick-prompts {
       display: flex;
       flex-direction: column;
@@ -95,14 +85,12 @@
       gap: 10px;
       margin-bottom: 16px;
     }
-
     .prompt-heading {
       font-weight: 500;
       font-size: 15px;
       margin-bottom: 6px;
       color: #444;
     }
-
     .prompt-box {
       background-color: #000;
       color: #fff;
@@ -114,7 +102,6 @@
       width: 50%;
       text-align: center;
     }
-
     .prompt-box:hover {
       background-color: #333;
     }
@@ -153,28 +140,23 @@
       document.getElementById('userInput').value = text;
       sendMessage();
     }
-
     async function sendMessage() {
       const input = document.getElementById('userInput');
       const chatbox = document.getElementById('chatbox');
       const prompts = document.getElementById('prompts');
       const message = input.value.trim();
       if (!message) return;
-
       if (prompts) prompts.style.display = 'none';
-
       const userDiv = document.createElement('div');
       userDiv.className = 'message user';
       userDiv.textContent = `You: ${message}`;
       chatbox.appendChild(userDiv);
       input.value = '';
-
       const response = await fetch('/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
       });
-
       const data = await response.json();
       const assistantDiv = document.createElement('div');
       assistantDiv.className = 'message assistant';
