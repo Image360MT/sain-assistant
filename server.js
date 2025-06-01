@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const openai = new OpenAI({ apiKey: 'sk-...Bw4A' });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.post('/chat', async (req, res) => {
   const { threadId, message } = req.body;
@@ -39,5 +39,6 @@ app.post('/chat', async (req, res) => {
   res.json({ response: lastMessage, threadId: thread });
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
-
+// ✅ This line ensures compatibility with Render's dynamic port
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
