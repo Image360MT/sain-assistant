@@ -3,131 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aimage360MT Assistant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Victor+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Aimage360MT Expert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: white;
       margin: 0;
-      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f7f8;
+      color: #1e1e1e;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-    .chat-wrapper {
+
+    .container {
       width: 100%;
-      max-width: 700px;
+      max-width: 800px;
       height: 90vh;
       background-color: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      font-family: 'Inter', sans-serif;
     }
-    .chat-header {
-      padding: 16px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #e0e0e0;
+
+    .header {
+      padding: 24px;
       text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
       font-weight: 600;
-      font-size: 18px;
     }
-    .chat-header div {
+
+    .header p {
+      margin-top: 8px;
       font-size: 14px;
-      font-weight: normal;
       color: #555;
-      margin-top: 4px;
     }
+
     #chatbox {
       flex: 1;
-      padding: 16px;
+      padding: 24px;
       overflow-y: auto;
-      background-color: white;
-      font-family: 'Victor Mono', monospace;
     }
+
     .message {
-      margin-bottom: 12px;
-    }
-    .user {
-      text-align: right;
-      color: #004785;
-      font-weight: 500;
-    }
-    .assistant {
-      background-color: #f1f1f1;
-      padding: 10px 14px;
-      border-radius: 8px;
-      display: inline-block;
-      max-width: 80%;
-    }
-    .chat-input {
-      padding: 12px;
-      border-top: 1px solid #e0e0e0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    #userInput {
-      flex: 1;
-      padding: 10px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    .quick-prompts {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
       margin-bottom: 16px;
     }
-    .prompt-heading {
+
+    .user {
+      text-align: right;
+      color: #000;
       font-weight: 500;
-      font-size: 15px;
-      margin-bottom: 6px;
-      color: #444;
     }
+
+    .assistant {
+      background-color: #f1f1f1;
+      padding: 12px 16px;
+      border-radius: 8px;
+      max-width: 75%;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 16px;
+      border-top: 1px solid #e0e0e0;
+      gap: 12px;
+      background-color: white;
+    }
+
+    #userInput {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button.icon-button {
+      padding: 0 16px;
+      font-size: 20px;
+      border: none;
+      background-color: #000;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .quick-prompts {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .prompt-heading {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
     .prompt-box {
       background-color: #000;
       color: #fff;
-      padding: 12px 16px;
-      border-radius: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 14px;
-      line-height: 1.4;
-      width: 50%;
-      text-align: center;
+      margin: 6px auto;
+      width: fit-content;
     }
+
     .prompt-box:hover {
       background-color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="chat-wrapper">
-    <div class="chat-header">
-      Aimage360MT Expert
-      <div>A 24/7 sign expert for Image360 Midtown Tampa customers, guiding design, orders, and support.</div>
+  <div class="container">
+    <div class="header">
+      <h1>Aimage360MT Expert</h1>
+      <p>A 24/7 sign expert for Image360 Midtown Tampa customers, guiding design, orders, and support.</p>
     </div>
     <div id="chatbox">
-      <div id="prompts" class="quick-prompts">
+      <div class="quick-prompts" id="prompts">
         <div class="prompt-heading">Hi! I'm Aimage360MT, I can answer things like:</div>
-        <div class="prompt-box" onclick="sendPrompt('What types of signs do you offer?')">
-          “What types of signs do you offer?”
-        </div>
-        <div class="prompt-box" onclick="sendPrompt('Can I reorder an old job?')">
-          “Can I reorder an old job?”
-        </div>
-        <div class="prompt-box" onclick="sendPrompt('How do I get a quote?')">
-          “How do I get a quote?”
-        </div>
-        <div class="prompt-box" onclick="sendPrompt('Where is your shop located?')">
-          “Where is your shop located?”
-        </div>
+        <div class="prompt-box" onclick="sendPrompt('What types of signs do you offer?')">“What types of signs do you offer?”</div>
+        <div class="prompt-box" onclick="sendPrompt('Can I reorder an old job?')">“Can I reorder an old job?”</div>
+        <div class="prompt-box" onclick="sendPrompt('How do I get a quote?')">“How do I get a quote?”</div>
+        <div class="prompt-box" onclick="sendPrompt('Where is your shop located?')">“Where is your shop located?”</div>
       </div>
     </div>
     <div class="chat-input">
@@ -135,28 +143,34 @@
       <button class="icon-button" onclick="sendMessage()">⬆️</button>
     </div>
   </div>
+
   <script>
     async function sendPrompt(text) {
       document.getElementById('userInput').value = text;
       sendMessage();
     }
+
     async function sendMessage() {
       const input = document.getElementById('userInput');
       const chatbox = document.getElementById('chatbox');
       const prompts = document.getElementById('prompts');
       const message = input.value.trim();
       if (!message) return;
+
       if (prompts) prompts.style.display = 'none';
+
       const userDiv = document.createElement('div');
       userDiv.className = 'message user';
       userDiv.textContent = `You: ${message}`;
       chatbox.appendChild(userDiv);
       input.value = '';
+
       const response = await fetch('/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
       });
+
       const data = await response.json();
       const assistantDiv = document.createElement('div');
       assistantDiv.className = 'message assistant';
